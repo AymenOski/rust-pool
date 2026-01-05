@@ -1,0 +1,14 @@
+# Rust build artifacts
+target/
+
+# Cargo lock file (ignored as requested)
+Cargo.lock
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Backup files
+**/*.rs.bk
