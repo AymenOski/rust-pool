@@ -3,11 +3,12 @@ pub fn initials(names: Vec<&str>) -> Vec<String> {
 
     for name in &names {
         let mut temp = String::new();
-        let words: Vec<&str> = name.split_whitespace().collect();
-        for word in words {
+        for word in name.split_whitespace() {
             match word.chars().next() {
                 Some(c) => {
-                    temp.push_str(&format!("{}. ", c));
+                    temp.push(c);
+                    temp.push('.');
+                    temp.push(' ');
                 }
                 None => (),
             }
