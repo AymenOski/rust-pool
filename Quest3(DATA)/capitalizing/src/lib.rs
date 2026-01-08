@@ -22,7 +22,7 @@ pub fn title_case(input: &str) -> String {
         counter = 0;
         result.push(' ');
     }
-    result
+    result.trim_end().to_string()
 }
 
 pub fn change_case(input: &str) -> String {
