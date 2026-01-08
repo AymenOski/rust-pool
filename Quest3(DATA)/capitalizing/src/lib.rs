@@ -19,6 +19,7 @@ pub fn title_case(input: &str) -> String {
                 result.push(c);
             }
         }    
+        counter = 0;
         result.push(' ');
     }
     result
