@@ -10,21 +10,23 @@ pub fn title_case(input: &str) -> String {
     let mut result = String::new();
     let mut counter = 0;
 
-    for word in input.split_whitespace() {
-        for c in word.chars() {
+    for c in input.chars() {
+        if c.is_whitespace() {
+            result.push(c);
+            counter = 0;
+        } else {
             if counter == 0 {
-                result.push_str(&c.to_uppercase().to_string());
+                result.push_str(&c.to_uppercase().collect::<String>());
                 counter += 1;
-            }else {
+            } else {
                 result.push(c);
+                counter += 1;
             }
-        }    
-        counter = 0;
-        result.push(' ');
+        }
     }
-    result.trim_end().to_string()
-}
 
+    result
+}
 pub fn change_case(input: &str) -> String {
     input
     .chars()
