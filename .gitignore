@@ -14,4 +14,4 @@ Cargo.lock
 **/*.rs.bk
 
 # documentation
-RUST_FUNDAMENTALS.md
+*.md
