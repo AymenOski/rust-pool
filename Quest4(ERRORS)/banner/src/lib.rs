@@ -41,14 +41,14 @@ impl FlagsHandler {
 }
 
 pub fn div(a: &str, b: &str) -> Result<String, ParseFloatError> {
-    let x: f32 = a.parse()?;
-    let y: f32 = b.parse()?;
+    let x: f64 = a.parse()?;
+    let y: f64 = b.parse()?;
     let res = x / y;
     Ok(res.to_string())
 }
 pub fn rem(a: &str, b: &str) -> Result<String, ParseFloatError> {
-    let x: f32 = a.parse()?;
-    let y: f32 = b.parse()?;
+    let x: f64 = a.parse()?;
+    let y: f64 = b.parse()?;
     let res = x % y;
     Ok(res.to_string())
 }
