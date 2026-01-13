@@ -1,0 +1,9 @@
+use middle_day::*;
+
+fn main() {
+    println!("{:?}", middle_day(1022));
+}
+
+// $ cargo run
+// Some(Tue)
+// $
