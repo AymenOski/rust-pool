@@ -1,8 +1,10 @@
 mod err;
+pub use err::{ParseErr, ReadErr};
 
 use std::error::Error;
+use std::fs;
 
-#[derive(Debug, Eq, PartialEq)]
+#[derive(Debug, Eq, PartialEq, Clone)]
 pub struct Task {
     pub id: u32,
     pub description: String,
@@ -17,6 +19,35 @@ pub struct TodoList {
 
 impl TodoList {
     pub fn get_todo(path: &str) -> Result<TodoList, Box<dyn Error>> {
-        todo!()
+        let content = match fs::read_to_string(path) {
+            Ok(c) => c,
+            Err(e) => return Err(Box::new(
+                ReadErr {
+                    child_err: Box::new(e),
+                }
+            ))
+        };
+        
+
+        let parse = json::parse(&content).map_err(|e| {
+            Box::new(ParseErr::Malformed(Box::new(e)))
+        })?;
+        if parse["tasks"].is_empty() {
+            return Err(Box::new(ParseErr::Empty))
+        }
+
+        Ok(
+            Self {
+                title: parse["title"].as_str().unwrap().to_owned(),
+                tasks: parse["tasks"]
+                    .members()
+                    .map(|m| Task {
+                        id: m["id"].as_u32().unwrap(),
+                        description: m["description"].as_str().unwrap().to_owned(),
+                        level: m["level"].as_u32().unwrap(),
+                    })
+                    .collect(),
+            }
+        )
     }
 }
