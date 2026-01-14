@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 pub fn score(text: &str) -> u32 {
     let mut scores = HashMap::new();
-    for c in "aeipulnrst".chars() {
+    for c in "aeioulnrst".chars() {
         scores.insert(c, 1);
     }
     for c in "dg".chars() {
