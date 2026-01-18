@@ -10,27 +10,27 @@ impl GameSession {
     pub fn new(id: u32, p1_name: String, p2_name: String, nb_games: u32) -> GameSession {
         Self {
             id,
-            p1: (p1_name , 0),
-            p2: (p2_name , 0),
+            p1: (p1_name, 0),
+            p2: (p2_name, 0),
             nb_games,
         }
     }
 
     pub fn read_winner(&self) -> Option<&(String, u32)> {
-    let threshold = (self.nb_games / 2) + 1;
-
-    if self.p1.1 >= threshold {
-        Some(&self.p1)
-    } else if self.p2.1 >= threshold {
-        Some(&self.p2)
-    } else {
-        None
+        if self.p1.1 > self.p2.1 {
+            Some(&self.p1)
+        } else if self.p2.1 > self.p1.1 {
+            Some(&self.p2)
+        } else {
+            None
+        }
     }
-}
 
     pub fn update_score(&mut self, user_name: &str) {
         // Check if the game is already finished
-        if self.read_winner().is_some() {
+        let threshold = (self.nb_games / 2) + 1;
+
+        if self.p1.1 >= threshold || self.p2.1 >= threshold{
             return;
         }
 
@@ -43,6 +43,6 @@ impl GameSession {
     }
 
     pub fn delete(self) -> String {
-        format!("game deleted: id -> {}",self.id)
+        format!("game deleted: id -> {}", self.id)
     }
 }
