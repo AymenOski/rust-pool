@@ -69,6 +69,6 @@ fn format_duration(duration: Duration) -> String {
     let total_seconds = duration.as_secs();
     let h = total_seconds / 3600;
     let m = (total_seconds % 3600) / 60;
-    let s = total_s % 60;
-    format!("{}H:{:02}M:{:02}S", h, m, seconds)
+    let s = total_seconds % 60;
+    format!("{}H:{:02}M:{:02}S", h, m, s)
 }
