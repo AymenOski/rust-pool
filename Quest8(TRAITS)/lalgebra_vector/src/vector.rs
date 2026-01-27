@@ -14,7 +14,7 @@ impl<T: Scalar> Add for Vector<T> {
         }
 
         let result = self.0
-            .into_iter()
+            .into_iter()    
             .zip(rhs.0)
             .map(|(a, b)| a + b)
             .collect();
