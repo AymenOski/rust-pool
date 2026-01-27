@@ -1,0 +1,26 @@
+use border_cross::*;
+
+fn main() {
+    println!(
+        "{:?}",
+        all_models([
+            &Car {
+                plate_nbr: "A3D5C7",
+                model: "Model 3",
+                horse_power: 325,
+                year: 2010,
+            },
+            &Truck {
+                plate_nbr: "V3D5CT",
+                model: "Ranger",
+                horse_power: 325,
+                year: 2010,
+                load_tons: 40,
+            },
+        ])
+    );
+}
+
+// $ cargo run
+// ["Model 3", "Ranger"]
+// $
