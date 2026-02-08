@@ -19,13 +19,13 @@ pub fn rem(a: f32, b: f32) -> f32 {
 }
 
 /* 
-    - ML inference : huge memory & speed difference
-    - decrease memory bandwidth pressure
-    - You make SIMD harder or impossible 
+    !- ML inference : huge memory & speed difference
+    !- decrease memory bandwidth pressure
+    !- You make SIMD harder or impossible 
      -> i8 : 32 values in 256-bit register
      -> i16 : 16 values in 256-bit register
      -> i32 : 8 values in 256-bit register
      -> i64 : 4 values in 256-bit register
-     => you see the importance of using the right data type for your application
-    => using smaller data types can lead to significant performance improvements, especially in applications that require processing large amounts of data, such as machine learning inference.
+     *=> you see the importance of using the right data type for your application
+     *=> using smaller data types can lead to significant performance improvements, especially in applications that require processing large amounts of data, such as machine learning inference.
 */
