@@ -1,4 +1,4 @@
-//* recommendation (⚠️): use Colorful Comments extension for better readability of the comments in this file
+//* recommendation (⚠️): use `Colorful Comments` extension for better readability of the comments in this file
 
 pub fn sum(a: u8, b: u8) -> u8 {
     a + b
