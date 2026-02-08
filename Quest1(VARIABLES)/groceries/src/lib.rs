@@ -36,9 +36,9 @@ pub fn at_index(slice: &[String], index: usize) -> &str {
 }
 
 
-//! pub fn at_index(slice: &[String], index: i32) -> &str {
-//!     &slice[index as usize]
-//! }
+//~ pub fn at_index(slice: &[String], index: i32) -> &str {
+//~     &slice[index as usize]
+//~ }
 
 /*
 
