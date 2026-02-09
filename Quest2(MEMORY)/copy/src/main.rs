@@ -6,8 +6,10 @@ fn main() {
     let c = 0;
 
     println!("{:?}", nbr_function(c));
-    vec_function(b);
+    println!("{:?}", vec_function(b));
     println!("{:?}", str_function(a));
+    // if we try to print a here after calling str_function(a), we will get an error because a is moved into the function and we cannot use it after that.
+    // println!("{}", a); // this will cause an error because a is moved into the function
 }
 
 // $ cargo run
