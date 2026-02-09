@@ -5,11 +5,16 @@ fn main() {
     let s2 = "snake_case";
     let s3 = "CamelCase";
     let s4 = "just";
+    let s5 = s1.to_owned();
 
     println!("first_subword({}) = {}", s1, first_subword(s1.to_owned()));
     println!("first_subword({}) = {}", s2, first_subword(s2.to_owned()));
     println!("first_subword({}) = {}", s3, first_subword(s3.to_owned()));
     println!("first_subword({}) = {}", s4, first_subword(s4.to_owned()));
+    
+    
+    // println!("first_subword({}) = {}", s1, first_subword(s5));
+    // println!("{}", s5); // value borrowed here after move!
 }
 
 // $ cargo run
