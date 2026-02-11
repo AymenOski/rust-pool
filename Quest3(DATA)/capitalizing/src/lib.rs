@@ -20,7 +20,6 @@ pub fn title_case(input: &str) -> String {
                 counter += 1;
             } else {
                 result.push(c);
-                counter += 1;
             }
         }
     }
@@ -42,21 +41,3 @@ pub fn change_case(input: &str) -> String {
     .collect::<String>()
 
 }
-
-// or : a more effecient way
-// pub fn change_case(input: &str) -> String {
-//     input
-//         .chars()
-//         .map(|c| {
-//             if c.is_lowercase() {
-//                 c.to_uppercase().next().unwrap()
-//             } else if c.is_uppercase() {
-//                 c.to_lowercase().next().unwrap()
-//             } else {
-//                 c  // leave punctuation/symbols alone
-//             }
-//         })
-//         .collect()
-// }
-
-// !! both last functions should use c.to_uppercase().next().unwrap() combo to prevent memory allocation issues
