@@ -1,3 +1,5 @@
+//* recommendation (⚠️): use `Colorful Comments` extension for better readability of the comments in this file7
+
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub struct Light {
 	pub alias: String,
@@ -21,3 +23,7 @@ pub fn change_brightness(lights: &mut [Light], alias: &str, value: u8) {
         }
     }
 }
+
+/*
+
+*/
