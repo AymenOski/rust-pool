@@ -7,18 +7,19 @@ pub fn nbr_function(c: i32) -> (i32, f64, f64) {
 pub fn str_function(a: String) -> (String, String) {
     let mut str = String::new();
     for x in a.split_whitespace() {
-        let _ = match x.parse() {
+        let _ = match x.parse::<i8>() {
             Ok(num) => {
                 let exp_n = (num as f64).exp();
                 str.push_str(&format!("{}", exp_n));
                 str.push(' ');
-                num
+                0i8
             },
             Err(_) => 0, 
         };
     }
     (a , str.trim_end().to_string())
 }
+
 
 pub fn vec_function(b: Vec<i32>) -> (Vec<i32>, Vec<f64>) {
     let mut ln_vec: Vec<f64> = Vec::new();
@@ -41,10 +42,13 @@ pub fn vec_function(b: Vec<i32>) -> (Vec<i32>, Vec<f64>) {
     - in math is a fascinating number that is approximately equal to 2.71828, and it has some interesting properties. For example, the derivative of exp(x) is exp(x) itself, which means that the function grows at a rate proportional to its current value. This makes it a fundamental function in calculus and many areas of mathematics.
     - as for ln(), it is the inverse function of exp(), which means that ln(exp(x)) = x for all x. It is also used in many areas of mathematics, including calculus, probability theory, and statistics. For example, the natural logarithm is used to model exponential growth and decay processes, such as population growth or radioactive decay. 
     * Q3 : what is development limite de la fonction exp() et ln()?
-    - the development limite (or limit) of a function is the value that the function approaches as the input approaches a certain value. For exp(x), as x approaches infinity, exp(x) approaches infinity, and as x approaches negative infinity, exp(x) approaches 0. For ln(x), as x approaches 0 from the positive side, ln(x) approaches negative infinity, and as x approaches infinity, ln(x) approaches infinity. So the limits of exp() and ln() are as follows:
+    - le development limite of a function is the value that the function approaches as the input approaches a certain value. For exp(x), as x approaches infinity, exp(x) approaches infinity, and as x approaches negative infinity, exp(x) approaches 0. For ln(x), as x approaches 0 from the positive side, ln(x) approaches negative infinity, and as x approaches infinity, ln(x) approaches infinity. So the limits of exp() and ln() are as follows:
         - lim x→∞ exp(x) = ∞
         - lim x→-∞ exp(x) = 0
         - lim x→0+ ln(x) = -∞
         - lim x→∞ ln(x) = ∞
-    * 
+    
+   
+    
+
 */
