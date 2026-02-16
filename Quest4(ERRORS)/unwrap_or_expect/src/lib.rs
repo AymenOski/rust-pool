@@ -1,3 +1,5 @@
+//* recommendation (⚠️): use `Colorful Comments` extension for better readability of the comments in this file7
+
 pub enum Security {
     Unknown, // Returns the server URL or panics.
     Message, // Returns the server URL or panics with the error message ERROR: program stops.
