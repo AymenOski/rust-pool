@@ -11,9 +11,9 @@
 // }
 
 pub fn search(array: &[i32], key: i32) -> Option<usize> {
-    for i in (0..array.len()).rev() {
-        if array[i] == key {
-            return Some(i);
+    for (i, val) in array.iter().rev().enumerate() {
+        if key == *val as i32{
+            return Some((array.len() - 1 - i as usize) as usize)
         }
     }
     None
