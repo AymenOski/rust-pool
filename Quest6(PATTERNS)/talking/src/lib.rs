@@ -9,11 +9,11 @@ pub fn talking(text: &str) -> &str {
     
     if is_question && is_yelling {
         return "Quiet, I am thinking!";
-    }else if is_question {
-        return "Sure.";
-    }else if is_yelling && has_letter {
+    } else if is_yelling && has_letter {
         return "There is no need to yell, calm down!";
-    }else {
+    } else if is_question {
+        return "Sure.";
+    } else {
         return "Interesting";
     }
 }
