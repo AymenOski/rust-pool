@@ -4,7 +4,7 @@ pub use err::{ParseErr, ReadErr};
 use std::error::Error;
 use std::fs;
 
-#[derive(Debug, Eq, PartialEq, Clone)]
+#[derive(Debug, Eq, PartialEq)]
 pub struct Task {
     pub id: u32,
     pub description: String,
@@ -19,39 +19,27 @@ pub struct TodoList {
 
 impl TodoList {
     pub fn get_todo(path: &str) -> Result<TodoList, Box<dyn Error>> {
-    let content = fs::read_to_string(path).map_err(|e| {
-        Box::new(ReadErr { child_err: Box::new(e) })
-    })?;
+        let contents = fs::read_to_string(path).map_err(|e| ReadErr {
+            child_err: Box::new(e),
+        })?;
 
-    // Parse JSON (Wrapped in ParseErr::Malformed)
-    let parsed = json::parse(&content).map_err(|e| {
-        Box::new(ParseErr::Malformed(Box::new(e)))
-    })?;
+        let contents = json::parse(&contents).map_err(|e| ParseErr::Malformed(Box::new(e)))?;
+        if contents["tasks"].is_empty() {
+            return Err(ParseErr::Empty.into());
+        }
 
-    // Safety Check: If the JSON is valid but doesn't have the expected structure, 
-    // we should treat it as Malformed or Empty.
-    if parsed["tasks"].is_empty() {
-        return Err(Box::new(ParseErr::Empty));
-    }
-
-    // Use safe extraction instead of immediate unwraps where possible
-    let title = parsed["title"]
-        .as_str()
-        .ok_or_else(|| Box::new(ParseErr::Malformed("Missing title".into())))?
-        .to_string();
-
-    let tasks: Vec<Task> = parsed["tasks"]
-        .members()
-        .filter_map(|m| {
-            let id = m["id"].as_u32()?;
-            let description = m["description"].as_str()?.to_string();
-            let level = m["level"].as_u32()?;
-            Some(Task { id, description, level })
+        Ok(Self {
+            title: contents["title"].as_str().unwrap().to_owned(),
+            tasks: contents["tasks"]
+                .members()
+                .map(|m| Task {
+                    id: m["id"].as_u32().unwrap(),
+                    description: m["description"].as_str().unwrap().to_owned(),
+                    level: m["level"].as_u32().unwrap(),
+                })
+                .collect(),
         })
-        .collect();
-
-    Ok(TodoList { title, tasks })
-}
+    }
 }
 
 /*
