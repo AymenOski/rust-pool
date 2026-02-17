@@ -8,7 +8,7 @@ pub struct Color {
 
 impl Color {
     pub fn swap(mut self, first: u8, second: u8) -> Color {
-         if self.r == first {
+        if self.r == first {
             self.r = second;
         } else if self.r == second {
             self.r = first;
@@ -33,6 +33,5 @@ impl Color {
         }
 
         self
-    }
     }
 }
