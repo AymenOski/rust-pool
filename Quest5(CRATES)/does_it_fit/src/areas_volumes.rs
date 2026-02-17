@@ -1,3 +1,5 @@
+//* recommendation (⚠️): use `Colorful Comments` extension for better readability of the comments in this file7
+
 pub enum GeometricalShapes {
     Square,
     Circle,
@@ -48,3 +50,9 @@ pub(crate) fn parallelepiped_volume(side_a: usize, side_b: usize, side_c: usize)
 pub(crate) fn cone_volume(base_radius: usize, height: usize) -> f64 {
     (1.0 / 3.0) * std::f64::consts::PI * base_radius.pow(2) as f64 * height as f64
 }
+
+/*
+    * Q & A :
+    * Q1 : What does pub(crate) mean?
+    - A1 : `pub(crate)` means that the function is public within the current crate  and can be accessed from other modules within the same crate, but it is not accessible from outside the crate. It allows for encapsulation while still providing access to the function for internal use.
+*/
