@@ -15,21 +15,13 @@ impl<T> List<T> {
     }
 
     pub fn push(&mut self, value: T) {
-        let new_list = match self.head.take() {
-            Some(node) => {
-                Node{
-                    value: value,
-                    next: Box::new(node),
-                }
-            }
-            None => {
-                value: value,
-                next: None,
-            }
-        }
-        self.head = new_list;
-    }
+        let new_node = Node {
+            value,
+            next: self.head.take(),
+        };
 
+        self.head = Some(Box::new(new_node));
+    }
     pub fn pop(&mut self) {
         if let Some(node) = self.head.take() {
             self.head = node.next;
