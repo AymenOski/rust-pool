@@ -24,6 +24,7 @@ pub fn parse_into_boxed(s: String) -> Vec<Box<u32>> {
 
 pub fn into_unboxed(a: Vec<Box<u32>>) -> Vec<u32> {
     a.into_iter().map(|boxed| *boxed).collect()
+    // now we have a vec of values instead of a vec of pointers.
 }
 
 /*
