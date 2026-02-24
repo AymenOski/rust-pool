@@ -30,7 +30,7 @@ impl<T> List<T> {
 
     pub fn len(&self) -> usize {
         let mut cmp: usize = 0;
-        let mut current: Option<&Node<T>> = self.head.as_ref();
+        let mut current: Option<&Node<T>> = self.head.as_deref();
         while let Some(node) = current { // Repeat this block as long as current contains a real node (not nothing).
             cmp += 1;
             current = node.next.as_deref();
