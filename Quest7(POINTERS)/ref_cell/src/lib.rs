@@ -49,3 +49,9 @@ impl Tracker {
     }
 
 }
+
+/*
+    * Q & A :
+    * Q1 : Why do we use `Rc` and `RefCell` here?
+    - A1 : We use `Rc` (Reference Counted) to enable multiple ownership of the same data, allowing us to have multiple references to the same value. `RefCell` is used to allow interior mutability, which means we can mutate the data inside an `Rc` even when we have multiple references to it. This combination allows us to track the number of references to
+*/
