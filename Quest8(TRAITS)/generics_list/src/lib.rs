@@ -16,28 +16,30 @@ impl<T> List<T> {
 
     pub fn push(&mut self, value: T) {
         let new_list = match self.head.take() {
-            Some(node) => Some(Node {
-                value: value,
-                next: Some(Box::new(node)),
-            }),
-            None => Some(Node {
+            Some(node) => {
+                Node{
+                    value: value,
+                    next: Box::new(node),
+                }
+            }
+            None => {
                 value: value,
                 next: None,
-            }),
-        };
+            }
+        }
         self.head = new_list;
     }
 
     pub fn pop(&mut self) {
         if let Some(node) = self.head.take() {
-            self.head = node.next.map(|p| *p)
+            self.head = node.next;
         }
     }
 
     pub fn len(&self) -> usize {
         let mut cmp: usize = 0;
         let mut current: Option<&Node<T>> = self.head.as_ref();
-        while let Some(node) = current {
+        while let Some(node) = current { // Repeat this block as long as current contains a real node (not nothing).
             cmp += 1;
             current = node.next.as_deref();
         }
