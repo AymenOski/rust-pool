@@ -1,6 +1,6 @@
 #[derive(Clone, Debug)]
 pub struct List<T> {
-    pub head: Option<Box<Node<T>>>,
+    pub head: Option<Node<T>>,
 }
 
 #[derive(Clone, Debug)]
@@ -10,32 +10,37 @@ pub struct Node<T> {
 }
 
 impl<T> List<T> {
-    pub fn new() -> List<T> {
-        List { head: None }
+    #[inline]
+    pub fn new() -> Self {
+        Self {
+            head: Default::default(),
+        }
     }
 
     pub fn push(&mut self, value: T) {
-        let new_node = Node {
+        let mut new_node = Node {
+            next: Default::default(),
             value,
-            next: self.head.take(),
         };
 
-        self.head = Some(Box::new(new_node));
+        match self.head.take() {
+            None => self.head = Some(new_node),
+            Some(current_head) => {
+                new_node.next = Some(Box::new(current_head));
+                self.head = Some(new_node);
+            }
+        }
     }
+
+    #[inline]
     pub fn pop(&mut self) {
-        if let Some(node) = self.head.take() {
-            self.head = node.next;
-        }
+        self.head
+            .take()
+            .map(|head| self.head = head.next.map(|h| *h));
     }
 
+    #[inline]
     pub fn len(&self) -> usize {
-        let mut cmp: usize = 0;
-        let mut current: Option<&Node<T>> = self.head.as_deref();
-        while let Some(node) = current { // Repeat this block as long as current contains a real node (not nothing).
-            cmp += 1;
-            current = node.next.as_deref();
-        }
-
-        cmp
+        std::iter::successors(self.head.as_ref(), |node| node.next.as_deref()).count()
     }
 }
