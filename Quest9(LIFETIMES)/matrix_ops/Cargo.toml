@@ -5,4 +5,4 @@ edition = "2024"
 
 [dependencies]
 matrix = { path = "../matrix" }
-lalgebra_scalar = { path = "../lalgebra_scalar" }
+lalgebra_scalar = { path = "../../Quest8(TRAITS)/lalgebra_scalar" }
