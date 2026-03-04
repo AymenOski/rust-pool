@@ -16,7 +16,7 @@ impl<T: Add<Output = T> + PartialOrd + Copy> std::iter::Iterator for StepIterato
     fn next(&mut self) -> Option<Self::Item> {
         let current = self.beg;
         if self.beg + self.step <= self.end {
-            self.beg += self.step;
+            self.beg = self.beg + self.step;
         } else {
             return None;
         }
